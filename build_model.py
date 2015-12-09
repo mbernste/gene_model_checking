@@ -21,7 +21,10 @@ class Model:
         self.nodes = nodes
         self.edges = {k : set(v) for k, v in edges.items()}
         self.label = {k : set(v) for k, v in label.items()}
-        self.gene_set = Set([x.split('_')[0] for x in reduce(lambda x, y: Set(x).union(Set(y)), label.values())])
+        self.gene_set = set()
+        for values in label.values():
+            for gene in values:
+                self.gene_set.add(gene.split('_')[0])
         self.start = start
     def submodel(self, nodes):
         ns = set(nodes) # prevent mistakes

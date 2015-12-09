@@ -24,8 +24,9 @@ class Model:
         self.gene_set = Set([x.split('_')[0] for x in reduce(lambda x, y: Set(x).union(Set(y)), label.values())])
         self.start = start
     def submodel(self, nodes):
-        edges = {n : self.edges[n] for n in nodes}
-        label = {n : self.label[n] for n in nodes}
+        ns = set(nodes) # prevent mistakes
+        edges = {n : self.edges[n].intersection(ns) for n in nodes}
+        label = {n : self.label[n].intersection(ns) for n in nodes}
         m = Model(nodes, edges, label)
         return m
     def in_neighbors(self, node):

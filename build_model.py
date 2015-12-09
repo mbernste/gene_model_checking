@@ -17,11 +17,12 @@ GENE_TO_GO_LOC = "/go/gene_to_GO_term.txt"
 REPO_LOC = "/scratch/mnbernstein/CS706_repo"
 
 class Model:
-    def __init__(self, nodes, edges, label, go_term=None):
+    def __init__(self, nodes, edges, label, go_term=None, start=None):
         self.nodes = nodes
         self.edges = edges
         self.label = label
         self.gene_set = [x.split('_')[0] for x in label]
+        self.start = start
     def submodel(self, nodes):
         edges = {n : self.edges[n] for n in nodes}
         label = {n : self.label[n] for n in nodes}
@@ -98,8 +99,9 @@ class ModelBuilder:
         node_to_component = map_nodes_to_components(node_to_adjs)
 
         # Merge graphs
-        m_node_to_adjs = merge_graphs(node_to_adjs, node_to_props, node_to_component)
-        self.model = Model(m_node_to_adjs.keys(), m_node_to_adjs, node_to_props, go_term=go_term)
+        m_node_to_adjs, start = merge_graphs(node_to_adjs, node_to_props, node_to_component)
+        node_to_props[start] = Set()
+        self.model = Model(m_node_to_adjs.keys(), m_node_to_adjs, node_to_props, go_term=go_term, start=start)
         return self.model
 
     def dot_file(self):
@@ -173,7 +175,18 @@ def merge_graphs(node_to_adjs, node_to_props, node_to_component):
             if merged:
                 break
 
-    return m_node_to_adj
+    # Find nodes with no incoming edges
+    no_in = Set()
+    for t_node in m_node_to_adj:
+        in_adjs = []
+        for adj in m_node_to_adj:
+            in_adjs.append(t_node in adj)
+        if True not in in_adjs:
+            no_in.add(t_node)
+    start = "START"
+    m_node_to_adj[start] = no_in
+
+    return m_node_to_adj, start
 
 
 

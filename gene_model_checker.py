@@ -48,7 +48,10 @@ def main():
                 print "No constructed model exists. Build a model with the 'nm' command."
                 continue
             ctl_q = " ".join(t[1:])
-            print ctl.check(curr_mod, ctl_q)        
+            try:
+                print ctl.check(curr_mod, ctl_q)   
+            except Exception as e:
+                print e    
         elif t[0] == "ge":
             if curr_mod is None:
                 print "No constructed model exists. Build a model with the 'nm' command."

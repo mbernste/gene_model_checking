@@ -56,7 +56,9 @@ def main():
             if curr_mod is None:
                 print "No constructed model exists. Build a model with the 'nm' command."
                 continue
-            print "Model's gene set: %s" % str(model.gene_set) 
+            print "Model's gene set: %s" % str(curr_mod.gene_set) 
+        elif t[0] == "ed":
+            print "Current model adjacency lists:\n%s" % str(curr_mod.edges)
 
 def open_gui():
     while 1:

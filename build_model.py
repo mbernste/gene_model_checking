@@ -21,7 +21,7 @@ class Model:
         self.nodes = nodes
         self.edges = edges
         self.label = label
-        self.gene_set = [x.split('_')[0] for x in label]
+        self.gene_set = Set([x.split('_')[0] for x in reduce(lambda x, y: Set(x).union(Set(y)), label.values())])
         self.start = start
     def submodel(self, nodes):
         edges = {n : self.edges[n] for n in nodes}
@@ -95,12 +95,17 @@ class ModelBuilder:
         # Compress premerged graphs
         node_to_adjs, node_to_props = compress_graphs(node_to_adjs, node_to_props)
 
+        # Prepend start node
+        node_to_adjs = prepend_startnode(node_to_adjs)        
+
         # Map each node to a connected component ID
         node_to_component = map_nodes_to_components(node_to_adjs)
 
         # Merge graphs
         m_node_to_adjs, start = merge_graphs(node_to_adjs, node_to_props, node_to_component)
-        node_to_props[start] = Set()
+        assert "START" in m_node_to_adjs        
+
+        # Build model
         self.model = Model(m_node_to_adjs.keys(), m_node_to_adjs, node_to_props, go_term=go_term, start=start)
         return self.model
 
@@ -129,6 +134,19 @@ def main():
     with open("merged_model.dot", "w") as f:
         f.write( m.dot_file() )
 
+def prepend_startnode(node_to_adjs):
+    for node_to_adj in node_to_adjs:
+        # Find nodes with no incoming edges
+        no_in = Set()
+        for t_node in node_to_adj:
+            in_adjs = []
+            for adj in node_to_adj.values():
+                in_adjs.append(t_node in adj)
+            if True not in in_adjs:
+                no_in.add(t_node)
+        start = "START"
+        node_to_adj[start] = no_in
+    return node_to_adjs
 
 def map_nodes_to_components(node_to_adjs):
     component_id = 1
@@ -147,6 +165,18 @@ def merge_graphs(node_to_adjs, node_to_props, node_to_component):
         for node, adj in node_to_adj.iteritems():
             m_node_to_adj[node] = adj
 
+    # Find nodes with no incoming edges
+    no_in = Set()
+    for t_node in m_node_to_adj:
+        in_adjs = []
+        for adj in m_node_to_adj.values():
+            in_adjs.append(t_node in adj)
+        if True not in in_adjs:
+            no_in.add(t_node)
+    start = "START"
+    node_to_props[start] = Set()
+    m_node_to_adj[start] = no_in
+    
     merged = True
     while merged:
         merged = False
@@ -174,17 +204,6 @@ def merge_graphs(node_to_adjs, node_to_props, node_to_component):
 
             if merged:
                 break
-
-    # Find nodes with no incoming edges
-    no_in = Set()
-    for t_node in m_node_to_adj:
-        in_adjs = []
-        for adj in m_node_to_adj:
-            in_adjs.append(t_node in adj)
-        if True not in in_adjs:
-            no_in.add(t_node)
-    start = "START"
-    m_node_to_adj[start] = no_in
 
     return m_node_to_adj, start
 
@@ -279,7 +298,7 @@ def node_to_atomic_propositions(nodes, gene_set, exp_to_gene_to_targ_to_vals):
 
 
 def gene_atomic_proposition(gene, expression):
-    return "%s_%s" % (gene, str(expression))
+    return "%s_%s" % (gene.lower(), str(expression))
 
 
 

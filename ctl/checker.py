@@ -1,4 +1,5 @@
 from collections import Counter
+from .ctl import parse
 
 class Model(object):
     def __init__(self):
@@ -58,7 +59,8 @@ def check_formula(model, start, formula):
     # -- everything else is in the form of the few ops we care about
     # -- the end result is a labeling of all model states s.t.
     # -- -- the starting state might be labeled with the 
-    labels = {n : set(['true']) for n in model.nodes}
+    TRUE = parse("true")
+    labels = {n : set([TRUE]) for n in model.nodes}
     for term in formula.subtrees():
         # case for ap (also captures 'true')
         if term.arity == 0 and term.val != 'false':

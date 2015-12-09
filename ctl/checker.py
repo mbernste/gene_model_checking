@@ -125,5 +125,5 @@ def check_formula(model, start, formula):
                     labels[n].add(term)
                     for s in model.in_neighbors(n):
                         if f in labels[s]:
-                            worklist.append(p)
+                            worklist.append(s)
     return formula in labels[start]

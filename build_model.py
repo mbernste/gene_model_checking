@@ -36,36 +36,40 @@ class Model:
         return result
     def out_neighbors(self, node):
         return self.edges[node]
-    def scc(self):
-        # set up data structs
-        visited, assigned = set(), set()
-        L = []
-        partition, current = {}, 0
-        # recursive 'visit' for Kosaraju's
-        def visit(n):
-            if n not in visited:
-                visited.add(n)
-                for s in self.out_neighbors(n):
-                    visit(s)
-                L.append(n)
-        # recursive 'assign'
-        def assign(u, r):
-            if n not in assigned:
-                # add to appropriate partition
+    def _visit(self, start):
+        visited = set()
+        left, right = [start], []
+        while len(left) > 0:
+            current = left.pop()
+            if current not in visited:
+                visited.add(current)
+                right.append(current)
+                for child in self.out_neighbors(current):
+                    left.append(child)
+        return reversed(right)
+    def _assign(self, start, root, partition, count):
+        visited = set()
+        left, right = [start], []
+        while len(left) > 0:
+            current = left.pop()
+            if current not in visited:
                 try:
-                    c = partition[r]
+                    c = partition[root]
                 except KeyError:
-                    c = current
-                    current += 1
-                partition[u] = c
-                assigned.add(u)
-                # recurse
-                for s in self.in_neighbors(n):
-                    assign(s, r)
+                    c = count
+                    count += 1
+                partition[current] = c
+                visited.add(current)
+                for child in self.in_neighbors(current):
+                    left.append(child)
+        return partition, count
+    def scc(self):
+        L = []
         for n in self.nodes:
-            visit(n)
+            L += self._visit(n)
+        partition, count = {}, 0
         for n in L:
-            assign(n, n)
+            partition, count = self._assign(n, n, partition, count)
         # result is dict {n : c}
         return partition
 

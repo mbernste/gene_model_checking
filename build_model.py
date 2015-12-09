@@ -19,8 +19,8 @@ REPO_LOC = "/scratch/mnbernstein/CS706_repo"
 class Model:
     def __init__(self, nodes, edges, label, go_term=None, start=None):
         self.nodes = nodes
-        self.edges = edges
-        self.label = label
+        self.edges = {k : set(v) for k, v in edges.items()}
+        self.label = {k : set(v) for k, v in label.items()}
         self.gene_set = Set([x.split('_')[0] for x in reduce(lambda x, y: Set(x).union(Set(y)), label.values())])
         self.start = start
     def submodel(self, nodes):

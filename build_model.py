@@ -17,15 +17,15 @@ GENE_TO_GO_LOC = "/go/gene_to_GO_term.txt"
 REPO_LOC = "/scratch/mnbernstein/CS706_repo"
 
 class Model:
-    def __init__(self, nodes, edges, labels):
+    def __init__(self, nodes, edges, label, go_term=None):
         self.nodes = nodes
         self.edges = edges
-        self.labels = labels
+        self.label = label
+        self.gene_set = [x.split('_')[0] for x in label]
     def submodel(self, nodes):
         edges = {n : self.edges[n] for n in nodes}
         label = {n : self.label[n] for n in nodes}
-        m = Model()
-        m.nodes, m.edges, m.label = nodes, edges, label
+        m = Model(nodes, edges, label)
         return m
     def in_neighbors(self, node):
         result = set()
@@ -82,7 +82,7 @@ class ModelBuilder:
         # Load the data
         self.exp_to_gene_to_targ_to_vals = experiment_to_target_to_values(self.all_nodes)
 
-    def build(self, gene_set):
+    def build(self, gene_set, go_term=None):
         # Build atomic propositions for each node
         node_to_adjs = list(self.origin_node_to_adj)
         node_to_props = node_to_atomic_propositions(self.all_nodes, gene_set, self.exp_to_gene_to_targ_to_vals)
@@ -95,15 +95,15 @@ class ModelBuilder:
 
         # Merge graphs
         m_node_to_adjs = merge_graphs(node_to_adjs, node_to_props, node_to_component)
-
-        return Model(m_node_to_adjs.keys(), m_node_to_adjs, node_to_props)
+        self.model = Model(m_node_to_adjs.keys(), m_node_to_adjs, node_to_props, go_term=go_term)
+        return self.model
 
     def dot_file(self):
         g = pgv.AGraph(directed='True')
-        if len(self.node_to_adj) == 1:
-            g.add_node(list(self.node_to_adj.keys())[0])
+        if len(self.model.edges) == 1:
+            g.add_node(list(self.model.keys())[0])
         else:
-            for s_node, adj_list in self.node_to_adj.iteritems():
+            for s_node, adj_list in self.model.edges.iteritems():
                 for t_node in adj_list:
                     g.add_edge(s_node, t_node)
         return str(g)

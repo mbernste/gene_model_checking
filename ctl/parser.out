@@ -1,0 +1,1362 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expr
+Rule 1     expr -> const
+Rule 2     expr -> unary
+Rule 3     expr -> binary
+Rule 4     expr -> paren
+Rule 5     const -> TRUE
+Rule 6     const -> FALSE
+Rule 7     const -> PRED
+Rule 8     unary -> NOT expr
+Rule 9     unary -> AX expr
+Rule 10    unary -> EX expr
+Rule 11    unary -> AG expr
+Rule 12    unary -> EG expr
+Rule 13    unary -> AF expr
+Rule 14    unary -> EF expr
+Rule 15    binary -> expr IFF expr
+Rule 16    binary -> expr IMPLIES expr
+Rule 17    binary -> expr AND expr
+Rule 18    binary -> expr OR expr
+Rule 19    binary -> expr AU expr
+Rule 20    binary -> expr EU expr
+Rule 21    paren -> OPENPAREN expr CLOSEPAREN
+
+Terminals, with rules where they appear
+
+AF                   : 13
+AG                   : 11
+AND                  : 17
+AU                   : 19
+AX                   : 9
+CLOSEPAREN           : 21
+EF                   : 14
+EG                   : 12
+EU                   : 20
+EX                   : 10
+FALSE                : 6
+IFF                  : 15
+IMPLIES              : 16
+NOT                  : 8
+OPENPAREN            : 21
+OR                   : 18
+PRED                 : 7
+TRUE                 : 5
+error                : 
+
+Nonterminals, with rules where they appear
+
+binary               : 3
+const                : 1
+expr                 : 8 9 10 11 12 13 14 15 15 16 16 17 17 18 18 19 19 20 20 21 0
+paren                : 4
+unary                : 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 14
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 1
+
+    (2) expr -> unary .
+
+    IFF             reduce using rule 2 (expr -> unary .)
+    IMPLIES         reduce using rule 2 (expr -> unary .)
+    AND             reduce using rule 2 (expr -> unary .)
+    OR              reduce using rule 2 (expr -> unary .)
+    AU              reduce using rule 2 (expr -> unary .)
+    EU              reduce using rule 2 (expr -> unary .)
+    $end            reduce using rule 2 (expr -> unary .)
+    CLOSEPAREN      reduce using rule 2 (expr -> unary .)
+
+
+state 2
+
+    (5) const -> TRUE .
+
+    IFF             reduce using rule 5 (const -> TRUE .)
+    IMPLIES         reduce using rule 5 (const -> TRUE .)
+    AND             reduce using rule 5 (const -> TRUE .)
+    OR              reduce using rule 5 (const -> TRUE .)
+    AU              reduce using rule 5 (const -> TRUE .)
+    EU              reduce using rule 5 (const -> TRUE .)
+    $end            reduce using rule 5 (const -> TRUE .)
+    CLOSEPAREN      reduce using rule 5 (const -> TRUE .)
+
+
+state 3
+
+    (21) paren -> OPENPAREN . expr CLOSEPAREN
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 17
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 4
+
+    (3) expr -> binary .
+
+    IFF             reduce using rule 3 (expr -> binary .)
+    IMPLIES         reduce using rule 3 (expr -> binary .)
+    AND             reduce using rule 3 (expr -> binary .)
+    OR              reduce using rule 3 (expr -> binary .)
+    AU              reduce using rule 3 (expr -> binary .)
+    EU              reduce using rule 3 (expr -> binary .)
+    $end            reduce using rule 3 (expr -> binary .)
+    CLOSEPAREN      reduce using rule 3 (expr -> binary .)
+
+
+state 5
+
+    (1) expr -> const .
+
+    IFF             reduce using rule 1 (expr -> const .)
+    IMPLIES         reduce using rule 1 (expr -> const .)
+    AND             reduce using rule 1 (expr -> const .)
+    OR              reduce using rule 1 (expr -> const .)
+    AU              reduce using rule 1 (expr -> const .)
+    EU              reduce using rule 1 (expr -> const .)
+    $end            reduce using rule 1 (expr -> const .)
+    CLOSEPAREN      reduce using rule 1 (expr -> const .)
+
+
+state 6
+
+    (4) expr -> paren .
+
+    IFF             reduce using rule 4 (expr -> paren .)
+    IMPLIES         reduce using rule 4 (expr -> paren .)
+    AND             reduce using rule 4 (expr -> paren .)
+    OR              reduce using rule 4 (expr -> paren .)
+    AU              reduce using rule 4 (expr -> paren .)
+    EU              reduce using rule 4 (expr -> paren .)
+    $end            reduce using rule 4 (expr -> paren .)
+    CLOSEPAREN      reduce using rule 4 (expr -> paren .)
+
+
+state 7
+
+    (11) unary -> AG . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 18
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 8
+
+    (13) unary -> AF . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 19
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 9
+
+    (12) unary -> EG . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 20
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 10
+
+    (14) unary -> EF . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 21
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 11
+
+    (10) unary -> EX . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 22
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 12
+
+    (9) unary -> AX . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 23
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 13
+
+    (6) const -> FALSE .
+
+    IFF             reduce using rule 6 (const -> FALSE .)
+    IMPLIES         reduce using rule 6 (const -> FALSE .)
+    AND             reduce using rule 6 (const -> FALSE .)
+    OR              reduce using rule 6 (const -> FALSE .)
+    AU              reduce using rule 6 (const -> FALSE .)
+    EU              reduce using rule 6 (const -> FALSE .)
+    $end            reduce using rule 6 (const -> FALSE .)
+    CLOSEPAREN      reduce using rule 6 (const -> FALSE .)
+
+
+state 14
+
+    (0) S' -> expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+
+state 15
+
+    (7) const -> PRED .
+
+    IFF             reduce using rule 7 (const -> PRED .)
+    IMPLIES         reduce using rule 7 (const -> PRED .)
+    AND             reduce using rule 7 (const -> PRED .)
+    OR              reduce using rule 7 (const -> PRED .)
+    AU              reduce using rule 7 (const -> PRED .)
+    EU              reduce using rule 7 (const -> PRED .)
+    $end            reduce using rule 7 (const -> PRED .)
+    CLOSEPAREN      reduce using rule 7 (const -> PRED .)
+
+
+state 16
+
+    (8) unary -> NOT . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 30
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 17
+
+    (21) paren -> OPENPAREN expr . CLOSEPAREN
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+    CLOSEPAREN      shift and go to state 31
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+
+state 18
+
+    (11) unary -> AG expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 11 (unary -> AG expr .)
+    CLOSEPAREN      reduce using rule 11 (unary -> AG expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 11 (unary -> AG expr .) ]
+  ! IMPLIES         [ reduce using rule 11 (unary -> AG expr .) ]
+  ! AND             [ reduce using rule 11 (unary -> AG expr .) ]
+  ! OR              [ reduce using rule 11 (unary -> AG expr .) ]
+  ! AU              [ reduce using rule 11 (unary -> AG expr .) ]
+  ! EU              [ reduce using rule 11 (unary -> AG expr .) ]
+
+
+state 19
+
+    (13) unary -> AF expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 13 (unary -> AF expr .)
+    CLOSEPAREN      reduce using rule 13 (unary -> AF expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 13 (unary -> AF expr .) ]
+  ! IMPLIES         [ reduce using rule 13 (unary -> AF expr .) ]
+  ! AND             [ reduce using rule 13 (unary -> AF expr .) ]
+  ! OR              [ reduce using rule 13 (unary -> AF expr .) ]
+  ! AU              [ reduce using rule 13 (unary -> AF expr .) ]
+  ! EU              [ reduce using rule 13 (unary -> AF expr .) ]
+
+
+state 20
+
+    (12) unary -> EG expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 12 (unary -> EG expr .)
+    CLOSEPAREN      reduce using rule 12 (unary -> EG expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 12 (unary -> EG expr .) ]
+  ! IMPLIES         [ reduce using rule 12 (unary -> EG expr .) ]
+  ! AND             [ reduce using rule 12 (unary -> EG expr .) ]
+  ! OR              [ reduce using rule 12 (unary -> EG expr .) ]
+  ! AU              [ reduce using rule 12 (unary -> EG expr .) ]
+  ! EU              [ reduce using rule 12 (unary -> EG expr .) ]
+
+
+state 21
+
+    (14) unary -> EF expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 14 (unary -> EF expr .)
+    CLOSEPAREN      reduce using rule 14 (unary -> EF expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 14 (unary -> EF expr .) ]
+  ! IMPLIES         [ reduce using rule 14 (unary -> EF expr .) ]
+  ! AND             [ reduce using rule 14 (unary -> EF expr .) ]
+  ! OR              [ reduce using rule 14 (unary -> EF expr .) ]
+  ! AU              [ reduce using rule 14 (unary -> EF expr .) ]
+  ! EU              [ reduce using rule 14 (unary -> EF expr .) ]
+
+
+state 22
+
+    (10) unary -> EX expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 10 (unary -> EX expr .)
+    CLOSEPAREN      reduce using rule 10 (unary -> EX expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 10 (unary -> EX expr .) ]
+  ! IMPLIES         [ reduce using rule 10 (unary -> EX expr .) ]
+  ! AND             [ reduce using rule 10 (unary -> EX expr .) ]
+  ! OR              [ reduce using rule 10 (unary -> EX expr .) ]
+  ! AU              [ reduce using rule 10 (unary -> EX expr .) ]
+  ! EU              [ reduce using rule 10 (unary -> EX expr .) ]
+
+
+state 23
+
+    (9) unary -> AX expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 9 (unary -> AX expr .)
+    CLOSEPAREN      reduce using rule 9 (unary -> AX expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 9 (unary -> AX expr .) ]
+  ! IMPLIES         [ reduce using rule 9 (unary -> AX expr .) ]
+  ! AND             [ reduce using rule 9 (unary -> AX expr .) ]
+  ! OR              [ reduce using rule 9 (unary -> AX expr .) ]
+  ! AU              [ reduce using rule 9 (unary -> AX expr .) ]
+  ! EU              [ reduce using rule 9 (unary -> AX expr .) ]
+
+
+state 24
+
+    (17) binary -> expr AND . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 32
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 25
+
+    (16) binary -> expr IMPLIES . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 33
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 26
+
+    (15) binary -> expr IFF . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 34
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 27
+
+    (19) binary -> expr AU . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 35
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 28
+
+    (20) binary -> expr EU . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 36
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 29
+
+    (18) binary -> expr OR . expr
+    (1) expr -> . const
+    (2) expr -> . unary
+    (3) expr -> . binary
+    (4) expr -> . paren
+    (5) const -> . TRUE
+    (6) const -> . FALSE
+    (7) const -> . PRED
+    (8) unary -> . NOT expr
+    (9) unary -> . AX expr
+    (10) unary -> . EX expr
+    (11) unary -> . AG expr
+    (12) unary -> . EG expr
+    (13) unary -> . AF expr
+    (14) unary -> . EF expr
+    (15) binary -> . expr IFF expr
+    (16) binary -> . expr IMPLIES expr
+    (17) binary -> . expr AND expr
+    (18) binary -> . expr OR expr
+    (19) binary -> . expr AU expr
+    (20) binary -> . expr EU expr
+    (21) paren -> . OPENPAREN expr CLOSEPAREN
+
+    TRUE            shift and go to state 2
+    FALSE           shift and go to state 13
+    PRED            shift and go to state 15
+    NOT             shift and go to state 16
+    AX              shift and go to state 12
+    EX              shift and go to state 11
+    AG              shift and go to state 7
+    EG              shift and go to state 9
+    AF              shift and go to state 8
+    EF              shift and go to state 10
+    OPENPAREN       shift and go to state 3
+
+    unary                          shift and go to state 1
+    expr                           shift and go to state 37
+    const                          shift and go to state 5
+    paren                          shift and go to state 6
+    binary                         shift and go to state 4
+
+state 30
+
+    (8) unary -> NOT expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 8 (unary -> NOT expr .)
+    CLOSEPAREN      reduce using rule 8 (unary -> NOT expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 8 (unary -> NOT expr .) ]
+  ! IMPLIES         [ reduce using rule 8 (unary -> NOT expr .) ]
+  ! AND             [ reduce using rule 8 (unary -> NOT expr .) ]
+  ! OR              [ reduce using rule 8 (unary -> NOT expr .) ]
+  ! AU              [ reduce using rule 8 (unary -> NOT expr .) ]
+  ! EU              [ reduce using rule 8 (unary -> NOT expr .) ]
+
+
+state 31
+
+    (21) paren -> OPENPAREN expr CLOSEPAREN .
+
+    IFF             reduce using rule 21 (paren -> OPENPAREN expr CLOSEPAREN .)
+    IMPLIES         reduce using rule 21 (paren -> OPENPAREN expr CLOSEPAREN .)
+    AND             reduce using rule 21 (paren -> OPENPAREN expr CLOSEPAREN .)
+    OR              reduce using rule 21 (paren -> OPENPAREN expr CLOSEPAREN .)
+    AU              reduce using rule 21 (paren -> OPENPAREN expr CLOSEPAREN .)
+    EU              reduce using rule 21 (paren -> OPENPAREN expr CLOSEPAREN .)
+    $end            reduce using rule 21 (paren -> OPENPAREN expr CLOSEPAREN .)
+    CLOSEPAREN      reduce using rule 21 (paren -> OPENPAREN expr CLOSEPAREN .)
+
+
+state 32
+
+    (17) binary -> expr AND expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 17 (binary -> expr AND expr .)
+    CLOSEPAREN      reduce using rule 17 (binary -> expr AND expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 17 (binary -> expr AND expr .) ]
+  ! IMPLIES         [ reduce using rule 17 (binary -> expr AND expr .) ]
+  ! AND             [ reduce using rule 17 (binary -> expr AND expr .) ]
+  ! OR              [ reduce using rule 17 (binary -> expr AND expr .) ]
+  ! AU              [ reduce using rule 17 (binary -> expr AND expr .) ]
+  ! EU              [ reduce using rule 17 (binary -> expr AND expr .) ]
+
+
+state 33
+
+    (16) binary -> expr IMPLIES expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 16 (binary -> expr IMPLIES expr .)
+    CLOSEPAREN      reduce using rule 16 (binary -> expr IMPLIES expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 16 (binary -> expr IMPLIES expr .) ]
+  ! IMPLIES         [ reduce using rule 16 (binary -> expr IMPLIES expr .) ]
+  ! AND             [ reduce using rule 16 (binary -> expr IMPLIES expr .) ]
+  ! OR              [ reduce using rule 16 (binary -> expr IMPLIES expr .) ]
+  ! AU              [ reduce using rule 16 (binary -> expr IMPLIES expr .) ]
+  ! EU              [ reduce using rule 16 (binary -> expr IMPLIES expr .) ]
+
+
+state 34
+
+    (15) binary -> expr IFF expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 15 (binary -> expr IFF expr .)
+    CLOSEPAREN      reduce using rule 15 (binary -> expr IFF expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 15 (binary -> expr IFF expr .) ]
+  ! IMPLIES         [ reduce using rule 15 (binary -> expr IFF expr .) ]
+  ! AND             [ reduce using rule 15 (binary -> expr IFF expr .) ]
+  ! OR              [ reduce using rule 15 (binary -> expr IFF expr .) ]
+  ! AU              [ reduce using rule 15 (binary -> expr IFF expr .) ]
+  ! EU              [ reduce using rule 15 (binary -> expr IFF expr .) ]
+
+
+state 35
+
+    (19) binary -> expr AU expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 19 (binary -> expr AU expr .)
+    CLOSEPAREN      reduce using rule 19 (binary -> expr AU expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 19 (binary -> expr AU expr .) ]
+  ! IMPLIES         [ reduce using rule 19 (binary -> expr AU expr .) ]
+  ! AND             [ reduce using rule 19 (binary -> expr AU expr .) ]
+  ! OR              [ reduce using rule 19 (binary -> expr AU expr .) ]
+  ! AU              [ reduce using rule 19 (binary -> expr AU expr .) ]
+  ! EU              [ reduce using rule 19 (binary -> expr AU expr .) ]
+
+
+state 36
+
+    (20) binary -> expr EU expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 20 (binary -> expr EU expr .)
+    CLOSEPAREN      reduce using rule 20 (binary -> expr EU expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 20 (binary -> expr EU expr .) ]
+  ! IMPLIES         [ reduce using rule 20 (binary -> expr EU expr .) ]
+  ! AND             [ reduce using rule 20 (binary -> expr EU expr .) ]
+  ! OR              [ reduce using rule 20 (binary -> expr EU expr .) ]
+  ! AU              [ reduce using rule 20 (binary -> expr EU expr .) ]
+  ! EU              [ reduce using rule 20 (binary -> expr EU expr .) ]
+
+
+state 37
+
+    (18) binary -> expr OR expr .
+    (15) binary -> expr . IFF expr
+    (16) binary -> expr . IMPLIES expr
+    (17) binary -> expr . AND expr
+    (18) binary -> expr . OR expr
+    (19) binary -> expr . AU expr
+    (20) binary -> expr . EU expr
+
+  ! shift/reduce conflict for IFF resolved as shift
+  ! shift/reduce conflict for IMPLIES resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AU resolved as shift
+  ! shift/reduce conflict for EU resolved as shift
+    $end            reduce using rule 18 (binary -> expr OR expr .)
+    CLOSEPAREN      reduce using rule 18 (binary -> expr OR expr .)
+    IFF             shift and go to state 26
+    IMPLIES         shift and go to state 25
+    AND             shift and go to state 24
+    OR              shift and go to state 29
+    AU              shift and go to state 27
+    EU              shift and go to state 28
+
+  ! IFF             [ reduce using rule 18 (binary -> expr OR expr .) ]
+  ! IMPLIES         [ reduce using rule 18 (binary -> expr OR expr .) ]
+  ! AND             [ reduce using rule 18 (binary -> expr OR expr .) ]
+  ! OR              [ reduce using rule 18 (binary -> expr OR expr .) ]
+  ! AU              [ reduce using rule 18 (binary -> expr OR expr .) ]
+  ! EU              [ reduce using rule 18 (binary -> expr OR expr .) ]
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for IFF in state 18 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 18 resolved as shift
+WARNING: shift/reduce conflict for AND in state 18 resolved as shift
+WARNING: shift/reduce conflict for OR in state 18 resolved as shift
+WARNING: shift/reduce conflict for AU in state 18 resolved as shift
+WARNING: shift/reduce conflict for EU in state 18 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 19 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 19 resolved as shift
+WARNING: shift/reduce conflict for AND in state 19 resolved as shift
+WARNING: shift/reduce conflict for OR in state 19 resolved as shift
+WARNING: shift/reduce conflict for AU in state 19 resolved as shift
+WARNING: shift/reduce conflict for EU in state 19 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 20 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 20 resolved as shift
+WARNING: shift/reduce conflict for AND in state 20 resolved as shift
+WARNING: shift/reduce conflict for OR in state 20 resolved as shift
+WARNING: shift/reduce conflict for AU in state 20 resolved as shift
+WARNING: shift/reduce conflict for EU in state 20 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 21 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 21 resolved as shift
+WARNING: shift/reduce conflict for AND in state 21 resolved as shift
+WARNING: shift/reduce conflict for OR in state 21 resolved as shift
+WARNING: shift/reduce conflict for AU in state 21 resolved as shift
+WARNING: shift/reduce conflict for EU in state 21 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 22 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 22 resolved as shift
+WARNING: shift/reduce conflict for AND in state 22 resolved as shift
+WARNING: shift/reduce conflict for OR in state 22 resolved as shift
+WARNING: shift/reduce conflict for AU in state 22 resolved as shift
+WARNING: shift/reduce conflict for EU in state 22 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 23 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 23 resolved as shift
+WARNING: shift/reduce conflict for AND in state 23 resolved as shift
+WARNING: shift/reduce conflict for OR in state 23 resolved as shift
+WARNING: shift/reduce conflict for AU in state 23 resolved as shift
+WARNING: shift/reduce conflict for EU in state 23 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 30 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 30 resolved as shift
+WARNING: shift/reduce conflict for AND in state 30 resolved as shift
+WARNING: shift/reduce conflict for OR in state 30 resolved as shift
+WARNING: shift/reduce conflict for AU in state 30 resolved as shift
+WARNING: shift/reduce conflict for EU in state 30 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 32 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 32 resolved as shift
+WARNING: shift/reduce conflict for AND in state 32 resolved as shift
+WARNING: shift/reduce conflict for OR in state 32 resolved as shift
+WARNING: shift/reduce conflict for AU in state 32 resolved as shift
+WARNING: shift/reduce conflict for EU in state 32 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 33 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 33 resolved as shift
+WARNING: shift/reduce conflict for AND in state 33 resolved as shift
+WARNING: shift/reduce conflict for OR in state 33 resolved as shift
+WARNING: shift/reduce conflict for AU in state 33 resolved as shift
+WARNING: shift/reduce conflict for EU in state 33 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 34 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 34 resolved as shift
+WARNING: shift/reduce conflict for AND in state 34 resolved as shift
+WARNING: shift/reduce conflict for OR in state 34 resolved as shift
+WARNING: shift/reduce conflict for AU in state 34 resolved as shift
+WARNING: shift/reduce conflict for EU in state 34 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 35 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 35 resolved as shift
+WARNING: shift/reduce conflict for AND in state 35 resolved as shift
+WARNING: shift/reduce conflict for OR in state 35 resolved as shift
+WARNING: shift/reduce conflict for AU in state 35 resolved as shift
+WARNING: shift/reduce conflict for EU in state 35 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 36 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 36 resolved as shift
+WARNING: shift/reduce conflict for AND in state 36 resolved as shift
+WARNING: shift/reduce conflict for OR in state 36 resolved as shift
+WARNING: shift/reduce conflict for AU in state 36 resolved as shift
+WARNING: shift/reduce conflict for EU in state 36 resolved as shift
+WARNING: shift/reduce conflict for IFF in state 37 resolved as shift
+WARNING: shift/reduce conflict for IMPLIES in state 37 resolved as shift
+WARNING: shift/reduce conflict for AND in state 37 resolved as shift
+WARNING: shift/reduce conflict for OR in state 37 resolved as shift
+WARNING: shift/reduce conflict for AU in state 37 resolved as shift
+WARNING: shift/reduce conflict for EU in state 37 resolved as shift

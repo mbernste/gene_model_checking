@@ -4,6 +4,7 @@ import os
 from os.path import join
 import sys
 import subprocess
+import ctl
 
 import go
 import build_model
@@ -30,6 +31,31 @@ def main():
     name_to_termid = {x[1].name : x[0] for x in go_graph.og.id_to_term.iteritems()}
 
     model_builder = build_model.ModelBuilder(META_FILES)
+
+    curr_mode = None
+    while 1:
+        inp = raw_input("$>")
+        t = inp.split()
+        print t
+        if t[0] == "nm":
+            curr_mod = model_builder.build(go_graph.genes_for_go_term_id(name_to_termid[" ".join(t[1:])]))
+            with open("current_model.dot", "w") as f:
+                f.write(model_builder.dot_file())
+            run_command("dot -Tpng ./current_model.dot -o current_model.png")
+            
+        elif t[0] == "qu":
+            if curr_mod is None:
+                print "No constructed model exists. Build a model with the 'nm' command."
+                continue
+            ctl_q = " ".join(t[1:])
+            print ctl.check(curr_mod, ctl_q)        
+        elif t[0] == "ge":
+            if curr_mod is None:
+                print "No constructed model exists. Build a model with the 'nm' command."
+                continue
+            print "Model's gene set: %s" % str(model.gene_set) 
+
+def open_gui():
     while 1:
         title = "Choose gene set."
         choices = list(name_to_termid.keys())

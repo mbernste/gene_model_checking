@@ -26,7 +26,7 @@ t_AG = r'AG'
 t_EG = r'EG'
 t_AU = r'AU'
 t_EU = r'EU'
-t_PRED = r'[a-z0-9]+'
+t_PRED = r'[a-z0-9_]+'
 def t_error(te):
     print("Illegal character '{}'".format(te.value[0]))
     te.lexer.skip(1)

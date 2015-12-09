@@ -21,6 +21,52 @@ class Model:
         self.nodes = nodes
         self.edges = edges
         self.labels = labels
+    def submodel(self, nodes):
+        edges = {n : self.edges[n] for n in nodes}
+        label = {n : self.label[n] for n in nodes}
+        m = Model()
+        m.nodes, m.edges, m.label = nodes, edges, label
+        return m
+    def in_neighbors(self, node):
+        result = set()
+        for n in self.nodes:
+            if node in self.edges[n]:
+                result.add(n)
+        return result
+    def out_neighbors(self, node):
+        return self.edges[node]
+    def scc(self):
+        # set up data structs
+        visited, assigned = set(), set()
+        L = []
+        partition, current = {}, 0
+        # recursive 'visit' for Kosaraju's
+        def visit(n):
+            if n not in visited:
+                visited.add(n)
+                for s in self.out_neighbors(n):
+                    visit(s)
+                L.append(n)
+        # recursive 'assign'
+        def assign(u, r):
+            if n not in assigned:
+                # add to appropriate partition
+                try:
+                    c = partition[r]
+                except KeyError:
+                    c = current
+                    current += 1
+                partition[u] = c
+                assigned.add(u)
+                # recurse
+                for s in self.in_neighbors(n):
+                    assign(s, r)
+        for n in self.nodes:
+            visit(n)
+        for n in L:
+            assign(n, n)
+        # result is dict {n : c}
+        return partition
 
 class ModelBuilder:
     def __init__(self, meta_files):

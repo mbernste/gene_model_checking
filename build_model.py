@@ -38,37 +38,37 @@ class Model:
     def out_neighbors(self, node):
         return self.edges[node]
     def _visit(self, start):
-        visited = set()
         left, right = [start], []
         while len(left) > 0:
             current = left.pop()
-            if current not in visited:
-                visited.add(current)
+            if current not in self._visited:
+                self._visited.add(current)
                 right.append(current)
                 for child in self.out_neighbors(current):
                     left.append(child)
         return reversed(right)
     def _assign(self, start, root, partition, count):
-        visited = set()
         left, right = [start], []
         while len(left) > 0:
             current = left.pop()
-            if current not in visited:
+            if current not in self._visited:
                 try:
                     c = partition[root]
                 except KeyError:
                     c = count
                     count += 1
                 partition[current] = c
-                visited.add(current)
+                self._visited.add(current)
                 for child in self.in_neighbors(current):
                     left.append(child)
         return partition, count
     def scc(self):
         L = []
+        self._visited = set()
         for n in self.nodes:
             L += self._visit(n)
         partition, count = {}, 0
+        self._visited = set()
         for n in L:
             partition, count = self._assign(n, n, partition, count)
         # result is dict {n : c}

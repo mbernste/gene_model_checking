@@ -76,7 +76,7 @@ def check_formula(model, start, formula):
         elif term.arity == 2 and term.val == "||":
             l, r = term.children
             for n in model.nodes:
-                if l in model.label[n] or r in labels[n]:
+                if l in labels[n] or r in labels[n]:
                     labels[n].add(term)
         # case for EX
         elif term.arity == 1 and term.val == "EX":

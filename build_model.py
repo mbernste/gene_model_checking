@@ -16,6 +16,12 @@ GO_OBO_LOC = "/go/go.obo"
 GENE_TO_GO_LOC = "/go/gene_to_GO_term.txt"
 REPO_LOC = "/scratch/mnbernstein/CS706_repo"
 
+class Model:
+    def __init__(self, nodes, edges, labels):
+        self.nodes = nodes
+        self.edges = edges
+        self.labels = labels
+
 class ModelBuilder:
     def __init__(self, meta_files):
         self.node_to_adj = None 
@@ -32,26 +38,28 @@ class ModelBuilder:
 
     def build(self, gene_set):
         # Build atomic propositions for each node
+        node_to_adjs = list(self.origin_node_to_adj)
         node_to_props = node_to_atomic_propositions(self.all_nodes, gene_set, self.exp_to_gene_to_targ_to_vals)
 
         # Compress premerged graphs
-        node_to_adj_lists, node_to_props = compress_graphs(self.origin_node_to_adj, node_to_props)
+        node_to_adjs, node_to_props = compress_graphs(node_to_adjs, node_to_props)
 
         # Map each node to a connected component ID
-        node_to_component = map_nodes_to_components(node_to_adj_lists)
+        node_to_component = map_nodes_to_components(node_to_adjs)
 
         # Merge graphs
-        m = merge_graphs(node_to_adj_lists, node_to_props, node_to_component)
+        m_node_to_adjs = merge_graphs(node_to_adjs, node_to_props, node_to_component)
 
-        print_graph(m)
-        self.node_to_adj = m
-        return m
+        return Model(m_node_to_adjs.keys(), m_node_to_adjs, node_to_props)
 
     def dot_file(self):
         g = pgv.AGraph(directed='True')
-        for s_node, adj_list in self.node_to_adj.iteritems():
-            for t_node in adj_list:
-                g.add_edge(s_node, t_node)
+        if len(self.node_to_adj) == 1:
+            g.add_node(list(self.node_to_adj.keys())[0])
+        else:
+            for s_node, adj_list in self.node_to_adj.iteritems():
+                for t_node in adj_list:
+                    g.add_edge(s_node, t_node)
         return str(g)
 
 

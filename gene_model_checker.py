@@ -42,11 +42,9 @@ def main():
             f.write(model_builder.dot_file())
     
         run_command("dot -Tpng ./current_model.dot -o current_model.png")
+        run_command("cp current_model.png current_model_original.png")
+        run_command("convert current_model.png -resize 2000x1000 current_model.png")
         run_command("convert current_model.png current_model.gif")
-
-        # note that we convert choice to string, in case
-        # the user cancelled the choice, and we got None.
-        #msgbox("You chose: " + str(choice), "Survey Result")
 
         msg = "The constructed model structure."
         choices = ["Continue"]

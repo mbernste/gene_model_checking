@@ -77,45 +77,6 @@ def main():
     with open("merged_model.dot", "w") as f:
         f.write( m.dot_file() )
 
-def duh():
-
-    # Build the initial graph
-    node_to_adj_lists = build_premerge_graph(meta_files)
-
-    all_nodes = []
-    for node_to_adj_list in node_to_adj_lists:
-        all_nodes += list(node_to_adj_list.keys())
-
-    # Load the data
-    exp_to_gene_to_targ_to_vals = experiment_to_target_to_values(all_nodes)
-    
-    #print_graph(node_to_adj_lists[0])
-    #n, m = merge_nodes("SRX129998","SRX130001", node_to_adj_lists[0])
-    #print_graph(n)    
-
-    #node_to_adj_list = merge_nodes("SRX130000", "SRX130007",node_to_adj_list) 
-    #print "MERGED"
-    #print_graph(node_to_adj_list)
-
-    test_gene_set = ['ENSG00000009830', 'ENSG00000086848', 'ENSG00000130714', 'ENSG00000253710', 'ENSG00000132581', 'ENSG00000136908', 'ENSG00000189366', 'ENSG00000060642', 'ENSG00000214160', 'ENSG00000178904', 'ENSG00000000419', 'ENSG00000179085', 'ENSG00000119523', 'ENSG00000119227', 'ENSG00000173852', 'ENSG00000069943', 'ENSG00000177990', 'ENSG00000182858', 'ENSG00000159063', 'ENSG00000033011', 'ENSG00000156162']
-
-    # Build atomic propositions for each node
-    node_to_props = node_to_atomic_propositions(all_nodes, test_gene_set, exp_to_gene_to_targ_to_vals) 
-
-    # Compress premerged graphs
-    node_to_adj_lists, node_to_props = compress_graphs(node_to_adj_lists, node_to_props)
-
-    print "LEN %d" % len(node_to_adj_lists)
-
-    # Map each node to a connected component ID
-    node_to_component = map_nodes_to_components(node_to_adj_lists)
-
-    # Merge graphs
-    m = merge_graphs(node_to_adj_lists, node_to_props, node_to_component)
-    m.build(test_gene_set)
-    
-    print_graph(m) 
-
 
 def map_nodes_to_components(node_to_adjs):
     component_id = 1
@@ -163,40 +124,6 @@ def merge_graphs(node_to_adjs, node_to_props, node_to_component):
                 break
 
     return m_node_to_adj
-
-def merge_graphs_ORIGINAL_MESSY(node_to_adj_lists, node_to_props): 
-    print "Merging graphs..."
-
-    popped_nodes = Set()
-
-    m_node_to_adj_list = node_to_adj_lists[0]
-    for i in range(1, len(node_to_adj_lists)): # Iterate over all connected components
-        print "Examining connected component."
-        merged = True
-        # Keep merging nodes from the current connect component
-        # to the current merged graph
-        while merged: 
-            merged = False
-
-            # Iterate over all nodes in the two connected components searching for two
-            # nodes that should be merged
-            for node_m in m_node_to_adj_list:
-                for node_c in node_to_adj_lists[i]:
-                    if node_c in popped_nodes:
-                        continue
-                    if Set(node_to_props[node_m]) == Set(node_to_props[node_c]):
-                        m_node_to_adj_list[node_c] = [x for x in node_to_adj_lists[i][node_c] if x not in popped_nodes]
-                        m_node_to_adj_list, merged_node = merge_nodes(node_m, node_c, m_node_to_adj_list)
-                        node_to_props[merged_node] = node_to_props[node_m]
-                        node_to_props.pop(node_m, None)
-                        node_to_props.pop(node_c, None)
-                        popped_nodes.add(node_c)
-                        merged = True
-                        break
-                if merged:
-                    break
-
-    return m_node_to_adj_list
 
 
 

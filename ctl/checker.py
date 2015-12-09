@@ -53,7 +53,7 @@ class Model(object):
         # result is dict {n : c}
         return partition
 
-def check_formula(model, start, formula):
+def check_formula(model, formula):
     # we iterate bottom-up over all sub-formulas
     # -- the leaves must be predicates we can check with the model
     # -- everything else is in the form of the few ops we care about
@@ -126,4 +126,4 @@ def check_formula(model, start, formula):
                     for s in model.in_neighbors(n):
                         if f in labels[s]:
                             worklist.append(s)
-    return formula in labels[start]
+    return labels
